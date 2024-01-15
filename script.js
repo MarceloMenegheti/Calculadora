@@ -1,4 +1,4 @@
-let runnunTotal = 0;
+let runningTotal = 0;
 let buffer = "0";
 let previusOperator;
 
@@ -8,8 +8,9 @@ function buttonClick(value){
     if(isNaN(value)){
         handleSymbol(value);
     }else{
-        tela.innerText = buffer;
+        handleSymbol(value);
     }
+    tela.innerText = buffer;
 }
 
 function handleSymbol(symbol){
@@ -25,10 +26,10 @@ function handleSymbol(symbol){
             flushOperation(parseInt(buffer));
             previusOperator = null;
             buffer = runningTotal;
-            runnunTotal = 0;
+            runningTotal = 0;
             break;
         case '←':
-            if(buffer.length ===1){
+            if(buffer.length === 1){
                 buffer = '0';
             }else{
                 buffer = buffer.toString(0, buffer.length - 1);
@@ -50,8 +51,8 @@ function handleMath(symbol){
 
     const intBuffer = parseInt(buffer);
 
-    if(runnunTotal === 0){
-        runnunTotal = intBuffer;
+    if(runningTotal === 0){
+        runningTotal = intBuffer;
     }else{
         flushOperation(intBuffer);
     }
@@ -61,13 +62,13 @@ function handleMath(symbol){
 
 function flushOperation(intBuffer){
     if(previusOperator === '+'){
-        runnunTotal +=intBuffer;
+        runningTotal += intBuffer;
     }else if(previusOperator === '-'){
-        runnunTotal -= intBuffer;
+        runningTotal -= intBuffer;
     }else if(previusOperator ==='x'){
         runningTotal *= intBuffer;
     }else if(previusOperator === '÷'){
-        runnunTotal /= intBuffer;
+        runningTotal /= intBuffer;
     }
 }
 
